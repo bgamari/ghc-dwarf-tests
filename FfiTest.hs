@@ -16,7 +16,7 @@ foreign import ccall "wrapper" mkTest :: Test -> IO (FunPtr Test)
 test :: Test
 test n = do
   print ("in test", n)
-  showStackTrace >>= print . fromMaybe "no stacktrace"
+  showStackTrace >>= putStrLn . fromMaybe "no stacktrace"
   print ("leaving test", n)
 
 main = do
