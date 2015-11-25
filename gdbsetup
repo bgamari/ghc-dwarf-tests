@@ -1,0 +1,83 @@
+define dump_unwind
+
+echo PC\t
+set $unwind_pc=((void**) state->regs)[16]
+print /a $unwind_pc
+
+echo SP\t
+set $unwind_sp=((void**) state->regs)[7]
+print /a $unwind_sp
+
+echo BP\t
+set $unwind_bp=((void**) state->regs)[6]
+print /a $unwind_bp
+
+echo RAX\t
+set $unwind_rax=((void**) state->regs)[0]
+print /a $unwind_rax
+
+echo RDX\t
+set $unwind_rdx=((void**) state->regs)[1]
+print /a $unwind_rdx
+
+echo RCX\t
+set $unwind_rcx=((void**) state->regs)[2]
+print /a $unwind_rcx
+
+echo RBX\t
+set $unwind_rbx=((void**) state->regs)[3]
+print /a $unwind_rbx
+
+echo RSI\t
+set $unwind_rsi=((void**) state->regs)[4]
+print /a $unwind_rsi
+
+echo RDI\t
+set $unwind_rdi=((void**) state->regs)[5]
+print /a $unwind_rdi
+
+echo R8\t
+set $unwind_r8=((void**) state->regs)[8]
+print /a $unwind_r8
+
+echo R9\t
+set $unwind_r9=((void**) state->regs)[9]
+print /a $unwind_r9
+
+echo R10\t
+set $unwind_r10=((void**) state->regs)[10]
+print /a $unwind_r10
+
+echo R11\t
+set $unwind_r11=((void**) state->regs)[11]
+print /a $unwind_r11
+
+echo R12\t
+set $unwind_r12=((void**) state->regs)[12]
+print /a $unwind_r12
+
+echo R13\t
+set $unwind_r13=((void**) state->regs)[13]
+print /a $unwind_r13
+
+echo R14\t
+set $unwind_r14=((void**) state->regs)[14]
+print /a $unwind_r14
+
+echo R15\t
+set $unwind_r15=((void**) state->regs)[15]
+print /a $unwind_r15
+
+#echo Registers\n
+#x/17a (void*) state[0].regs
+echo Stack\n
+x/64a $unwind_sp
+print *state
+end
+
+del
+break dwfl_frame.c:454
+commands
+dump_unwind
+end
+
