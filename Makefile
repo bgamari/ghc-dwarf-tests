@@ -19,4 +19,4 @@ ffi-test.o : ffi-test.c
 	$(READELF) --debug-dump=frames $< > $@
 
 %.frames-dump : %
-	readelf -R.debug_frame $< > $@
+	readelf -x .debug_frame $< > $@
