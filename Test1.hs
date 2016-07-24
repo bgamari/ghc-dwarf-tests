@@ -1,4 +1,6 @@
+import Control.Concurrent
 import GHC.ExecutionStack
+import System.Mem
 
 -- | Trim object file names
 cleanUpBacktrace :: String -> String
@@ -13,9 +15,12 @@ test 0 = return ()
 test i = do
     print i
     showStackTrace >>= putStrLn . maybe "no stacktrace" cleanUpBacktrace
+    performGC
     test (i-1)
     return ()
 
 main = do
-        test 4
+        test 40
+        threadDelay 10000000
+        test 40
         print "Hello"
