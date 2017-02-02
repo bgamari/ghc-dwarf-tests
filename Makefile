@@ -1,7 +1,7 @@
 export LD_LIBRARY_PATH=/opt/exp/elfutils-root/lib/elfutils
 HC ?= ../inplace/bin/ghc-stage2
 HCOPTS ?= -g -rtsopts
-HCOPTS += -ddump-asm -ddump-to-file -ddump-simpl -ddump-stg -ddump-cmm -fforce-recomp -dppr-debug
+HCOPTS += -ddump-asm -ddump-to-file -ddump-simpl -ddump-stg -ddump-cmm -fforce-recomp -dppr-debug -ddump-cmm-from-stg -ddump-cmm-verbose
 READELF ?= /opt/exp/elfutils-root/bin/eu-readelf
 
 all : Test1 FfiTest Test1.dumps
